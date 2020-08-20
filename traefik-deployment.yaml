@@ -21,7 +21,7 @@ spec:
         release: traefik
     spec:
       nodeSelector:
-        kubernetes.io/hostname: node2
+        kubernetes.io/hostname: unms
       containers:
       - args:
         - --api.insecure
@@ -35,7 +35,7 @@ spec:
         - --providers.kubernetesingress=true
         - --log.level=INFO
         # Use log level= INFO or DEBUG
-        image: traefik:2.1.4
+        image: traefik:latest
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
@@ -98,7 +98,7 @@ metadata:
   namespace: kube-system
 spec:
   externalIPs:
-  - 192.168.1.104 # IP for scheduled worker
+  - 192.168.1.81 # IP for scheduled worker
   externalTrafficPolicy: Cluster
   ports:
   - name: web

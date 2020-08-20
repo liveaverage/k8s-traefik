@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ocp-ftw
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ocp-ftw
+  template:
+    metadata:
+      labels:
+        app: ocp-ftw
+    spec:
+      containers:
+      - name: hello-world
+        image: openshift/hello-openshift:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ocp-ftw
+  namespace: kube-system
+spec:
+  type: ClusterIP
+  selector:
+    app: ocp-ftw
+  ports:
+  - port: 8080
+    targetPort: 8080
